@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer List</title>
+    <link rel="stylesheet" href="../../../static/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 40px;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        td {
+            vertical-align: middle;
+        }
+
+        .btn-group > a {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Customer List</h1>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Fname</th>
+                    <th>Lname</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Website</th>
+                    <th>Job Title</th>
+                    <th>User ID</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in model %}
+                    <tr>
+                        <td>{{ item.fname }}</td>
+                        <td>{{ item.lname }}</td>
+                        <td>{{ item.email }}</td>
+                        <td>{{ item.phone }}</td>
+                        <td>{{ item.address }}</td>
+                        <td>{{ item.website }}</td>
+                        <td>{{ item.job_title }}</td>
+                        <td>{{ item.user_id }}</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a href="{{ url_for('.customer_delete', customer_id=item.customer_id) }}" class="btn btn-danger">Delete</a>
+                                <a href="{{ url_for('.update_customer', customer_id=item.customer_id) }}" class="btn btn-primary">Edit</a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
